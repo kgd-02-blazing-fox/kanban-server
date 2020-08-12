@@ -26,7 +26,8 @@ module.exports = (sequelize, DataTypes) => {
         },
       }
     },
-    password: DataTypes.STRING
+    organization: DataTypes.STRING,
+    password: DataTypes.STRING,
   }, {
     hooks: {
       beforeCreate(user) {

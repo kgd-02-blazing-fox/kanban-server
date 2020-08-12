@@ -6,7 +6,7 @@ const authenticate = require('../middlewares/authenticate')
 const users = require('./user')
 router.use('/', users)
 
-// const kanbans = require('./user')
-// router.use('/kanbans', kanbans)
+const task = require('./task')
+router.use('/tasks', authenticate, task)
 
 module.exports = router
