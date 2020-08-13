@@ -7,7 +7,7 @@ class TaskController {
     static async getByOrganization(req,res,next) {
         try {
             let user = await User.findByPk(req.access_id)
-            let results = await Task.findAll({where:{organization:user.organization},order:[["createdAt","ASC"]]})
+            let results = await Task.findAll({where:{organization:user.organization},order:[["createdAt","ASC"]],include:User})
             res.status(200).json(results)
         } catch (error) {
             next(error)

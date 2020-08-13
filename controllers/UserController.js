@@ -29,7 +29,8 @@ class UserController {
         try {
             let {name,email,password,organization} = req.body
             let result = await User.create({name,email,password,organization})
-            res.status(201).json(result)
+            let access_token = sign(result.dataValues)
+            res.status(201).json({"access_token":access_token})
         } catch (error) {
             next(error)
         }
