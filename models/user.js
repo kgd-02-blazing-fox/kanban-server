@@ -37,12 +37,6 @@ module.exports = (sequelize, DataTypes) => {
         }
       }},
     password: {type:DataTypes.STRING,
-      validate:{
-        notEmpty:{
-          args:true,
-          msg:"Please fill the password"
-        },
-      }
     },
     organization: DataTypes.STRING
   }, {
@@ -50,8 +44,8 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'User',
   });
   User.beforeCreate((instance,option)=>{
-    instance.organization = "Hacktiv8" //might change this later
-    instance.password = encHash(instance.password)
+    if(!instance.organization) instance.organization="Hacktiv8"
+    if (instance.password) instance.password = encHash(instance.password)
   })
   return User;
 };

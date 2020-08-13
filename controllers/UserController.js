@@ -3,6 +3,7 @@
 const {User} = require("../models/index.js")
 const {encCompare} = require("../helpers/encryptor.js")
 const {sign} = require("../helpers/jwt.js")
+const {OAuth2Client} = require("google-auth-library")
 
 class UserController {
     
@@ -35,7 +36,33 @@ class UserController {
         
     }
     static async Glogin(req,res,next) {
-
+        try {
+            const gClient = new OAuth2Client(process.env.GOOGLE_ID)
+                const ticket = await gClient.verifyIdToken({
+                    idToken:req.headers.google_token,
+                    audience:process.env.GOOGLE_ID
+                })
+                const credential = ticket.getPayload()
+                const user = await User.findOne({where:{email:credential.email}})
+                if (user) {
+                    console.log("reached glogin")   //change here
+                    console.log(user)  //change here
+                    let access_token = sign(user.dataValues)
+                    res.status(200).json({access_token})
+                } else {
+                    console.log("reached gregister")   //change here
+                    const userCreate = await User.create({
+                        name:credential.email.substring(0, credential.email.lastIndexOf("@")),
+                        email:credential.email
+                    })
+                
+                    console.log(userCreate.dataValues)   //change here
+                    let access_token = sign(userCreate.dataValues)
+                    res.status(201).json({access_token})
+                }
+        } catch (error) {
+            next(error)
+        }
     }
 }
 
