@@ -17,8 +17,23 @@ class Access {
             }
         } catch (error) {
             next(error)
-            //invalid token
-            //internal error
+        }
+    }
+    static async fetch(req,res,next) {
+        try {
+            const credential = verify(req.headers.access_token)
+            let user = await User.findOne({where:{email:credential.email}})
+            if (user) {
+                res.status(200).json({
+                    name:user.name,
+                    email:user.email,
+                    organization:user.organization
+                })
+            } else {
+                throw new Error("Invalid token")
+            }
+        } catch (error) {
+            next(error)
         }
     }
 
@@ -34,9 +49,6 @@ class Access {
             } else throw new Error("File not found")
         } catch (error) { 
             next(error)
-            //not found
-            //unauthorized
-            //internal error
         }
     }
 }

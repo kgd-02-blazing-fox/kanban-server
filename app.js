@@ -19,7 +19,5 @@ app.use(errorHandling)
 app.listen(port,()=>{
     if (process.env.NODE_ENV === "development")
     console.log(`Kanban listening at http://localhost:${port} from npm run dev`)
-    else
-    console.log(`Kanban listening at http://localhost:${port} by manual execution`) //change here later
 })
 

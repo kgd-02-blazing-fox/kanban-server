@@ -1,8 +1,6 @@
 "use strict"
 
 function errorHandling(err,req,res,next) {
-    console.log(err) //debug purposes
-
     if (err.name !== "Error") {
         if (err.name === "SequelizeValidationError" || err.name === "SequelizeUniqueConstraintError") {
             res.status(400).json({"message":err.errors[0].message})

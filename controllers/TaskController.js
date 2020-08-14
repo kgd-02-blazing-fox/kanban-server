@@ -11,9 +11,6 @@ class TaskController {
             res.status(200).json(results)
         } catch (error) {
             next(error)
-            //user not found -- filtered by authentication
-            //task not found -- optional
-            //internal error
         }
     }
     static async postByOrganization(req,res,next) {
@@ -30,9 +27,6 @@ class TaskController {
             res.status(201).json(results)
         } catch (error) {
             next(error)
-            //user not found -- filtered by authentication
-            //bad requests (requirements)
-            //internal error
         }
     }
     static async putIdByOrganization(req,res,next) {
@@ -42,9 +36,6 @@ class TaskController {
             res.status(201).json(result[1][0])
         } catch (error) {
             next(error)
-            //task not found -- filtered by authorization
-            //bad requests (requirements)
-            //internal error
         }
     }
     static async patchIdByOrganization(req,res,next) {
@@ -54,9 +45,6 @@ class TaskController {
             res.status(201).json(result[1][0])
         } catch (error) {
             next(error)
-            //task not found -- filtered by authorization
-            //bad requests (requirements)
-            //internal error
         }
     }
     static async delIdByOrganization(req,res,next) {
@@ -66,8 +54,6 @@ class TaskController {
             res.status(200).json(task)
         } catch (error) {
             next(error)
-            //task not found -- filtered by authorization
-            //internal error
         }
     }
 }

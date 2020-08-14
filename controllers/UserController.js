@@ -33,8 +33,7 @@ class UserController {
             res.status(201).json({"access_token":access_token})
         } catch (error) {
             next(error)
-        }
-        
+        } 
     }
     static async Glogin(req,res,next) {
         try {
@@ -46,18 +45,13 @@ class UserController {
                 const credential = ticket.getPayload()
                 const user = await User.findOne({where:{email:credential.email}})
                 if (user) {
-                    console.log("reached glogin")   //change here
-                    console.log(user)  //change here
                     let access_token = sign(user.dataValues)
                     res.status(200).json({access_token})
                 } else {
-                    console.log("reached gregister")   //change here
                     const userCreate = await User.create({
                         name:credential.email.substring(0, credential.email.lastIndexOf("@")),
                         email:credential.email
                     })
-                
-                    console.log(userCreate.dataValues)   //change here
                     let access_token = sign(userCreate.dataValues)
                     res.status(201).json({access_token})
                 }
