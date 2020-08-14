@@ -41,11 +41,11 @@ class TaskController {
   }
 
   static editTask(req, res, next) {
+    console.log("sampe");
     const id = req.params.taskId
     Task.update(
       {
         content: req.body.content,
-        status: req.body.status,
       },
       {
         where: { id },
@@ -53,6 +53,7 @@ class TaskController {
       })
       .then(data => {
         res.status(201).json(data)
+        console.log("BERHASIL UPDATE");
       })
       .catch(err => {
         console.log("EROR");
