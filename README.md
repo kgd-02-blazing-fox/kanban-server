@@ -1,6 +1,19 @@
 # kanban-server
 repo server for kanban
 
+Client-Side Deploy Link:
+
+
+Server-Side Deploy Link /
+API Endpoint Base URL:
+https://kanban-idz.herokuapp.com/
+
+Complete API Documentation Link
+(w/ example requests & responses):
+https://documenter.getpostman.com/view/12245283/T1LSA5N9
+
+---
+
 ## __Introduction__
 This app was written in Javascript & made using NodeJS along with the following core NPM packages:
 - bcrypt
