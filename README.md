@@ -2,7 +2,7 @@
 repo server for kanban
 
 Client-Side Deploy Link:
-
+https://kanban-idz.web.app/
 
 Server-Side Deploy Link /
 API Endpoint Base URL:
