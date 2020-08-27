@@ -1,6 +1,6 @@
 "use strict"
 
-const {verify} = require("./jwt.js")
+const {verify} = require("../helpers/jwt.js")
 const {User,Task} = require("../models/index.js")
 
 class Access {

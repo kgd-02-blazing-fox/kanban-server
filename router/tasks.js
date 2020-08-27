@@ -2,7 +2,7 @@
 
 const router = require("express").Router()
 const TaskController = require("../controllers/TaskController.js")
-const Access = require("../helpers/access.js")
+const Access = require("../middlewares/access.js")
 
 router.get("/",Access.authenticate,TaskController.getByOrganization)
 router.post("/",Access.authenticate,TaskController.postByOrganization)
