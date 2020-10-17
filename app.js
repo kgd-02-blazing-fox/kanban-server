@@ -14,7 +14,10 @@ const baseUrl = process.env.BASE_URL || `http://localhost:${port}`
 
 app.use(cors())
 app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true })
+app.get('/', function (req, res) {
+  res.status(200).json({msg: 'Hello Ini Kanban Gua, Mau apa lu?'})
+})
 app.use(route)
 app.use(errorHandler)
 
